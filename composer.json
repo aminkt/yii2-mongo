@@ -1,0 +1,29 @@
+{
+  "name": "aminkt/yii2-mongodb",
+  "description": "Base calsses based on yiisoft/yii2-mongodb for yii2",
+  "type": "library",
+  "keywords": [
+    "yii2",
+    "mongodb",
+    "library",
+    "base",
+    "aminkt"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Amin Keshavarz",
+      "email": "ak_1596@yahoo.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "~2.0.0",
+    "yiisoft/yii2-mongodb": "~2.1.0",
+    "poshtiban/yii2base": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "aminkt\\yii2\\mongodb\\": "src"
+    }
+  }
+}
