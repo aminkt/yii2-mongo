@@ -18,8 +18,7 @@
   ],
   "require": {
     "yiisoft/yii2": "~2.0.0",
-    "yiisoft/yii2-mongodb": "~2.1.0",
-    "poshtiban/yii2base": "*"
+    "yiisoft/yii2-mongodb": "~2.1.0"
   },
   "autoload": {
     "psr-4": {
