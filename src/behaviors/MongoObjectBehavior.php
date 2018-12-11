@@ -28,6 +28,18 @@ class MongoObjectBehavior extends Behavior
         ];
     }
 
+    /**
+     * Converet string mongo ids to MongoId objects.
+     *
+     * @param $event
+     *
+     * @return mixed
+     *
+     * @see \aminkt\yii2\mongodb\behaviors\MongoObjectBehavior::convertToMongoObjectId()
+     *
+     * @author Amin Keshavarz <ak_1596@yahoo.com>
+     * @throws \yii\base\ErrorException
+     */
     public function PrepareMongoObject($event)
     {
         foreach ( $this->list as $property ) {
@@ -36,16 +48,30 @@ class MongoObjectBehavior extends Behavior
             }
             if(!empty($event->sender->$property)){
                 if(is_array($event->sender->$property) ) {
+                    $temp = [];
                     foreach ( $event->sender->$property as $item ) {
-                        $temp[]  = is_string($item) ? new \MongoDB\BSON\ObjectID($item) : $item;
+                        $temp[]  = self::convertToMongoObjectId($item);
                     }
                     $event->sender->$property = $temp;
 
                 }else{
-                    $event->sender->$property  = is_string($event->sender->$property) ? new \MongoDB\BSON\ObjectID($event->sender->$property) : $event->sender->$property;
+                    $event->sender->$property  = self::convertToMongoObjectId($event->sender->$property);
                 }
             }
         }
         return $event->isValid;
+    }
+
+    /**
+     * Convert mongo object id if is string to mongoObject id or not return itself.
+     *
+     * @param $value
+     *
+     * @return \MongoDB\BSON\ObjectID
+     *
+     * @author Amin Keshavarz <ak_1596@yahoo.com>
+     */
+    public static function convertToMongoObjectId($value) {
+        return is_string($value) ? new \MongoDB\BSON\ObjectID($value) : $item;
     }
 }
