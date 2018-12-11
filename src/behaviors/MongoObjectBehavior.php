@@ -48,6 +48,7 @@ class MongoObjectBehavior extends Behavior
             }
             if(!empty($event->sender->$property)){
                 if(is_array($event->sender->$property) ) {
+                    // Empty last temps for every property
                     $temp = [];
                     foreach ( $event->sender->$property as $item ) {
                         $temp[]  = self::convertToMongoObjectId($item);
