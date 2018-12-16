@@ -73,6 +73,6 @@ class MongoObjectBehavior extends Behavior
      * @author Amin Keshavarz <ak_1596@yahoo.com>
      */
     public static function convertToMongoObjectId($value) {
-        return is_string($value) ? new \MongoDB\BSON\ObjectID($value) : $item;
+        return is_string($value) ? new \MongoDB\BSON\ObjectID($value) : $value;
     }
 }
