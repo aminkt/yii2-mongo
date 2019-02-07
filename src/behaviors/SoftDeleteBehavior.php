@@ -2,7 +2,6 @@
 
 namespace aminkt\yii2\mongodb\behaviors;
 
-use aminkt\yii2\base\mongodb\models\ActiveRecord;
 use yii\base\Behavior;
 use yii\web\ServerErrorHttpException;
 
@@ -39,7 +38,7 @@ class SoftDeleteBehavior extends Behavior
         $this->owner->$attr = true;
         if ($this->owner->save()) {
             $event->isValid = false;
-            $this->owner->trigger(ActiveRecord::EVENT_AFTER_DELETE);
+            $this->owner->trigger(\yii\mongodb\ActiveRecord::EVENT_AFTER_DELETE);
             return true;
         }
         throw new Exception('Failed to delete the object for unknown reason.');
