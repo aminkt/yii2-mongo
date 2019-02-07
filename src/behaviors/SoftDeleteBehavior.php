@@ -1,6 +1,6 @@
 <?php
 
-namespace poshtiban\yii2\mongodb\behaviors;
+namespace aminkt\yii2\mongodb\behaviors;
 
 use aminkt\yii2\base\mongodb\models\ActiveRecord;
 use yii\base\Behavior;
@@ -19,8 +19,8 @@ class SoftDeleteBehavior extends Behavior
     public function events()
     {
         return [
-            ActiveRecord::EVENT_BEFORE_INSERT => 'initSoftDelete',
-            ActiveRecord::EVENT_BEFORE_DELETE => 'softDelete',
+            \yii\mongodb\ActiveRecord::EVENT_BEFORE_INSERT => 'initSoftDelete',
+            \yii\mongodb\ActiveRecord::EVENT_BEFORE_DELETE => 'softDelete',
         ];
     }
 
@@ -55,7 +55,7 @@ class SoftDeleteBehavior extends Behavior
     public function initSoftDelete($event)
     {
         $attr = $this->deletedAttribute;
-        $event->sender->$attr = fa;
+        $event->sender->$attr = false;
         return true;
     }
 }
